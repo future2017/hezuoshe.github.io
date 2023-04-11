@@ -1,72 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>分类标签导航网页</title>
-    <style>
-      /* 居中 */
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      /* 主体框架 */
-      .container {
-        width: 80%;
-        height: 80%;
-        border: 1px solid black;
-        display: flex;
-        flex-direction: column;
-      }
-      /* H1标题 */
-      h1 {
-        text-align: center;
-      }
-      /* 标签 */
-      .tags {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
-      .tag {
-        margin: 0 10px;
-        cursor: pointer;
-      }
-      .tag.active {
-        font-weight: bold;
-      }
-      /* 内容部分 */
-      .content {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 20px;
-      }
-      .item {
-        width: 200px;
-        height: 200px;
-        margin: 10px;
-        border: 1px solid black;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>分类标签导航网页</h1>
-      <div class="tags">
-        <div class="tag active">标签1</div>
-        <div class="tag">标签2</div>
-        <div class="tag">标签3</div>
-      </div>
-      <div class="content">
-        <div class="item">内容1</div>
-        <div class="item">内容2</div>
-        <div class="item">内容3</div>
-        <div class="item">内容4</div>
-        <div class="item">内容5</div>
-        <div class="item">内容6</div>
-      </div>
-    </div>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>标签切换导航</title>
+	<style>
+		/* 隐藏所有内容 */
+		.tab-content {
+			display: none;
+		}
+		/* 显示当前选中的内容 */
+		.tab-content.active {
+			display: block;
+		}
+		/* 标签样式 */
+		.tab {
+			display: inline-block;
+			padding: 10px;
+			background-color: #eee;
+			cursor: pointer;
+		}
+		/* 选中标签样式 */
+		.tab.active {
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<!-- 标签 -->
+	<div class="tab" onclick="showTab(0)">标签1</div>
+	<div class="tab" onclick="showTab(1)">标签2</div>
+	<div class="tab" onclick="showTab(2)">标签3</div>
+	<!-- 内容 -->
+	<div class="tab-content" id="tab1">内容1</div>
+	<div class="tab-content" id="tab2">内容2</div>
+	<div class="tab-content" id="tab3">内容3</div>
+	<script>
+		function showTab(index) {
+			// 隐藏所有内容
+			var contents = document.getElementsByClassName("tab-content");
+			for (var i = 0; i < contents.length; i++) {
+				contents[i].classList.remove("active");
+			}
+			// 显示选中的内容
+			document.getElementById("tab" + (index + 1)).classList.add("active");
+			// 取消所有标签的选中状态
+			var tabs = document.getElementsByClassName("tab");
+			for (var i = 0; i < tabs.length; i++) {
+				tabs[i].classList.remove("active");
+			}
+			// 设置选中标签的样式
+			tabs[index].classList.add("active");
+		}
+	</script>
+</body>
 </html>
